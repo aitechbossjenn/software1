@@ -1,0 +1,42 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Uniform Tracker Pro" class="action-bar">
+        <NavigationButton visibility="collapsed" />
+        <ActionItem ios.position="right" android.position="popup" text="Add" tap="{{ onAddTap }}" />
+    </ActionBar>
+
+    <TabView selectedTabTextColor="#007AFF">
+        <TabViewItem title="Inventory">
+            <GridLayout>
+                <ListView items="{{ uniforms }}" itemTap="{{ onUniformTap }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="list-group-item p-4">
+                            <StackLayout col="0">
+                                <Label text="{{ type }}" class="text-lg font-bold" />
+                                <Label text="{{ 'Size: ' + size + ' | Number: ' + number }}" class="text-sm text-gray-600" />
+                                <Label text="{{ 'Status: ' + status }}" class="text-sm" 
+                                       class="{{ status === 'Available' ? 'text-green-600' : 'text-red-600' }}" />
+                            </StackLayout>
+                            <Label col="1" text="›" class="text-2xl text-gray-400" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+        
+        <TabViewItem title="Players">
+            <GridLayout>
+                <ListView items="{{ players }}" itemTap="{{ onPlayerTap }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="list-group-item p-4">
+                            <StackLayout col="0">
+                                <Label text="{{ name }}" class="text-lg font-bold" />
+                                <Label text="{{ 'Position: ' + position + ' | #' + jerseyNumber }}" class="text-sm text-gray-600" />
+                            </StackLayout>
+                            <Label col="1" text="›" class="text-2xl text-gray-400" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+    </TabView>
+</Page>
